@@ -10,7 +10,7 @@ It allows instructors to create and manage courses, while students can enroll, l
 - 👩‍🏫 Instructor and Student roles  
 - 📚 Create, edit, and delete courses  
 - 🎥 Add lessons with video links (YouTube or other sources)  
-- 🧭 Student enrollment and progress tracking  
+- 🧭 Student enrollment
 - ⭐ Reviews and ratings system  
 - 📱 Responsive design using Tailwind CSS  
 - 🗃️ SQLite database for easy local setup  
