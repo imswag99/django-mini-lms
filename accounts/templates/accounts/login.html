@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% load widget_tweaks %}
+
+{% block title %} Login {% endblock %} 
+
+{% block content %}
+
+<div class="w-full flex flex-col justify-center items-center py-3 bg-bg text-text-primary dark:bg-bg dark:text-text-primary transition-colors duration-300">
+    <h2 class="text-3xl capitalize mb-5 text-text-primary">Login form</h2>
+
+    <form class="w-80 flex flex-col gap-6 mb-5 bg-surface border border-border rounded-xl p-6 shadow-sm" method="post">
+        {% csrf_token %}
+        <div class="flex gap-2 justify-center items-center">
+            {% render_field form.username class="pl-3 py-2 text-text-primary border border-border bg-surface placeholder-text-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" placeholder="Username" type="text" %}
+        </div>
+
+        <div class="flex gap-2 justify-center items-center">
+            {% render_field form.password class="pl-3 py-2 text-text-primary border border-border bg-surface placeholder-text-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" placeholder="Password" type="password" %}
+        </div>
+
+        <button class="px-4 py-2 bg-primary text-white font-medium rounded-lg hover:opacity-90 transition-all duration-200">
+            Login
+        </button>
+    </form>
+    <p class="text-text-secondary">Don't have an account yet? <a class="text-accent font-semibold hover:underline" href="{% url 'register' %}">Register here</a></p>
+</div>
+
+{% endblock %}

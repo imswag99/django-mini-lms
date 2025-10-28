@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.log
+*.pot
+*.pyc
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# Django specific
+*.sqlite3
+*.db
+/media/
+staticfiles/
+*.py[cod]
+
+# VSCode settings
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Tailwind and node modules
+node_modules/
+package-lock.json
+
+# Environment variables
+.env

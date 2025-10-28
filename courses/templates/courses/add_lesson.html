@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% load widget_tweaks %}
+
+{% block title %}
+Add Lesson
+{% endblock %}
+
+{% block content %}
+
+<section class="flex flex-col items-center justify-center py-16 bg-bg">
+  <div class="w-full max-w-lg bg-surface border border-border rounded-xl p-8 shadow-sm">
+    <h1 class="text-3xl font-semibold text-text-primary mb-6 text-center">
+      Add a New Lesson
+    </h1>
+
+    {% if form.errors %}
+      <div class="p-4 mb-4 text-error bg-red-50 border border-error rounded-lg">
+        {{ form.errors }}
+      </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" class="flex flex-col gap-6">
+      {% csrf_token %}
+
+      <!-- Lesson Title -->
+      <div>
+        {% render_field form.title class="pl-3 py-2 text-text-primary border border-border bg-surface placeholder-text-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" placeholder="Lesson Title" %}
+      </div>
+
+      <!-- Lesson Content -->
+      <div>
+        {% render_field form.content class="pl-3 py-2 text-text-primary border border-border bg-surface placeholder:text-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 min-h-[150px]" placeholder="Lesson Content" %}
+      </div>
+
+      <!-- Optional Video/File Upload -->
+      <div>
+        <label class="block text-text-secondary mb-1">Upload Lesson Video URL (optional)</label>
+        {% render_field form.video_url class="pl-3 block w-full text-text-primary border border-border bg-surface rounded-lg cursor-pointer focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" %}
+      </div>
+
+      <div>
+        <label class="block text-text-secondary mb-1">Lesson Order</label>
+        {% render_field form.order class="pl-3 block w-full text-text-primary border border-border bg-surface rounded-lg cursor-pointer focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" %}
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="px-4 py-2 bg-primary text-white font-medium rounded-lg hover:opacity-90 transition-all duration-200">
+        Add Lesson
+      </button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

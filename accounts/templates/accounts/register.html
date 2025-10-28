@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% load widget_tweaks %}
+
+{% block title %} Register {% endblock %} 
+
+{% block content %}
+
+<div class="w-full flex flex-col justify-center items-center py-3 bg-bg text-text-primary dark:bg-bg dark:text-text-primary transition-colors duration-300">
+    <h2 class="text-3xl capitalize mb-5 text-text-primary">Register form</h2>
+
+    {% if form.errors %}
+        <div class="p-4 mb-4 text-error bg-red-50 border border-error">
+            {{ form.errors }}
+        </div>
+    {% endif %}
+
+    <form class="w-80 flex flex-col gap-6 mb-5 bg-surface border border-border rounded-xl p-6 shadow-sm" method="post">
+        {% csrf_token %}
+        <div class="flex gap-2 justify-center items-center">
+            {% render_field form.username class="pl-3 py-2 text-text-primary border border-border bg-surface placeholder-text-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" placeholder="Username" type="text" %}
+        </div>
+
+        <div class="flex gap-2 justify-center items-center">
+            {% render_field form.email class="pl-3 py-2 text-text-primary border border-border bg-surface placeholder-text-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" placeholder="Email" type="email" %}
+        </div>
+
+        <div class="flex gap-2 justify-center items-center">
+            {% render_field form.password1 class="pl-3 py-2 text-text-primary border border-border bg-surface placeholder-text-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" placeholder="Password" type="password" %}
+        </div>
+
+        <div class="flex gap-2 justify-center items-center">
+            {% render_field form.password2 class="pl-3 py-2 text-text-primary border border-border bg-surface placeholder-text-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" placeholder="Confirm password" type="password" %}
+        </div>
+
+        <div class="flex gap-2 justify-center items-center">
+            <p>Are you an instructor?</p>
+            {% render_field form.is_instructor class="w-4 h-4 text-primary bg-surface border-border rounded-sm focus:ring-2 focus:ring-primary cursor-pointer" type="checkbox" %}
+        </div>
+
+        <div class="flex gap-2 justify-center items-center">
+            <p>Are you a student?</p>
+            {% render_field form.is_student class="w-4 h-4 text-primary bg-surface border-border rounded-sm focus:ring-2 focus:ring-primary cursor-pointer" type="checkbox" %}
+        </div>
+
+        <button type="submit" class="px-4 py-2 bg-primary text-white font-medium rounded-lg hover:opacity-90 transition-all duration-200">
+            Register
+        </button>
+    </form>
+    <p class="text-text-secondary">Already have an account? <a class="text-accent font-semibold hover:underline" href="{% url 'login' %}">Login here</a></p>
+</div>
+
+{% endblock %}

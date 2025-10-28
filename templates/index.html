@@ -1,0 +1,151 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<section class="bg-bg text-text-primary py-16">
+  <div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12 px-6">
+    
+    <!-- Text Content -->
+    <div class="flex-1 space-y-6">
+      <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+        Learn, Grow, and Master New Skills
+      </h1>
+      <p class="text-lg text-text-secondary max-w-md">
+        Join our learning platform to access interactive lessons, expert instructors, 
+        and real-world projects that help you level up your knowledge.
+      </p>
+
+      <div class="flex gap-4 mt-6">
+        {% if user.is_authenticated %}
+        <a href="{% url 'course_list' %}" 
+           class="bg-primary hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition">
+          {% if user.is_student %}
+            Enroll now
+          {% else %}
+            Courses
+          {% endif %}
+        </a>
+        {% else %}
+        <a href="{% url 'register' %}" 
+           class="bg-primary hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition">
+          Get Started
+        </a>
+        {% endif %}
+        <a href="{% url 'about' %}" 
+           class="bg-accent text-white border border-border hover:bg-surface hover:text-text-primary py-3 px-6 rounded-lg shadow-sm transition">
+          Learn More
+        </a>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="flex-1">
+      <img 
+        src="https://images.unsplash.com/photo-1669023414162-8b0573b9c6b2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1932" 
+        alt="Learning illustration"
+        class="w-full rounded-2xl shadow-lg border border-border transform scale-x-[-1]">
+    </div>
+  </div>
+</section>
+<section class="bg-bg py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <!-- Section Header -->
+    <h2 class="text-3xl font-bold text-text-primary mb-8">Popular Courses</h2>
+
+    {% if courses %}
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {% for course in courses|slice:":4" %}
+          <div class="border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+            {% if course.image %}
+              <img src="{{ course.image.url }}" alt="{{ course.title }}" class="h-40 w-full object-cover">
+            {% else %}
+              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+                   alt="Course image" class="h-40 w-full object-cover">
+            {% endif %}
+
+            <div class="p-4 space-y-2">
+              <h3 class="text-lg font-semibold text-text-primary">{{ course.title }}</h3>
+              <p class="text-text-secondary text-sm line-clamp-3">
+                {{ course.description|truncatewords:15 }}
+              </p>
+              <p class="text-sm text-accent font-medium">
+                Instructor: {{ course.instructor.username }}
+              </p>
+              <a href="{% url 'course_detail' course.id %}"
+                 class="inline-block mt-2 bg-primary text-white px-3 py-1 rounded-lg font-medium hover:bg-blue-700 transition">
+                View Course
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- View More Button -->
+      <div class="flex justify-center mt-10">
+        <a href="{% url 'course_list' %}" 
+           class="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-blue-700 transition">
+          View More Courses
+        </a>
+      </div>
+
+    {% else %}
+      <p class="text-center text-text-secondary mt-6">
+        No courses available.
+      </p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Student Reviews Section -->
+<section class="bg-surface border-t border-border py-16 mt-7">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+
+    <h2 class="text-3xl font-bold text-text-primary mb-10">
+      What Our Students Say
+    </h2>
+
+    <div class="grid sm:grid-cols-1 lg:grid-cols-4 gap-8 justify-center">
+      {% for course in courses|slice:":4" %}
+        {% with review=course.reviews.first %}
+          {% if review %}
+            <div class="bg-bg border border-border rounded-2xl shadow-md p-6 flex flex-col items-center text-center space-y-3 hover:shadow-lg transition">
+              
+              <!-- User Icon -->
+              <div class="w-14 h-14 rounded-full bg-accent flex items-center justify-center text-white text-lg font-semibold">
+                {{ review.student.username|first|upper }}
+              </div>
+
+              <!-- Review Content -->
+              <p class="text-text-secondary italic line-clamp-4">
+                “{{ review.comment|truncatewords:20 }}”
+              </p>
+
+              <!-- Rating -->
+              <div class="flex justify-center text-yellow-400">
+                {% for i in "12345" %}
+                  {% if forloop.counter <= review.rating %}
+                    <span>★</span>
+                  {% else %}
+                    <span class="text-border">★</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              <!-- Reviewer & Course -->
+              <p class="text-sm text-text-primary font-medium mt-2">
+                — {{ review.user.username }} <br>
+                <span class="text-primary text-xs">on {{ course.title }}</span>
+              </p>
+            </div>
+          {% endif %}
+        {% endwith %}
+      {% empty %}
+        <p class="text-text-secondary">No reviews available yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

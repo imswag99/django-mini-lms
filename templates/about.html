@@ -1,0 +1,92 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+About Us
+{% endblock %}
+
+{% block content %}
+<section class="bg-surface min-h-screen pt-32 pb-20">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <!-- Heading -->
+    <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-6">
+      About <span class="text-primary">e-ducate</span>
+    </h1>
+    <p class="text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
+      Empowering learners and instructors through accessible, high-quality online education.
+      At <strong>e-ducate</strong>, we believe learning should be easy, engaging, and empowering — 
+      no matter where you are.
+    </p>
+  </div>
+
+  <!-- Mission Section -->
+  <div class="max-w-6xl mx-auto mt-16 px-6 grid md:grid-cols-2 gap-10 items-center">
+    <img src="https://images.unsplash.com/photo-1455849318743-b2233052fcff?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2069" alt="Learning" class="rounded-2xl shadow-lg">
+    <div class="text-left">
+      <h2 class="text-3xl font-semibold text-text-primary mb-4">Our Mission</h2>
+      <p class="text-text-secondary leading-relaxed">
+        Our mission is to make education accessible to everyone by connecting passionate 
+        instructors with eager learners in a dynamic online environment. We strive to build 
+        a platform where curiosity thrives, skills grow, and knowledge is shared without boundaries.
+      </p>
+    </div>
+  </div>
+
+  <!-- Vision Section -->
+  <div class="max-w-6xl mx-auto mt-20 px-6 grid md:grid-cols-2 gap-10 items-center">
+    <div class="text-left md:order-1 order-2">
+      <h2 class="text-3xl font-semibold text-text-primary mb-4">Our Vision</h2>
+      <p class="text-text-secondary leading-relaxed">
+        We envision a world where learning is lifelong, personalized, and community-driven. 
+        <strong>e-ducate</strong> aims to break barriers by using technology to bring education 
+        to everyone — anytime, anywhere.
+      </p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070" alt="Vision" class="rounded-2xl shadow-lg md:order-2 order-1">
+  </div>
+
+  <!-- Values Section -->
+  <div class="max-w-6xl mx-auto mt-20 px-6 text-center">
+    <h2 class="text-3xl font-semibold text-text-primary mb-10">Our Core Values</h2>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div class="p-6 border border-border rounded-2xl shadow-sm hover:shadow-md transition">
+        <div class="w-12 h-12 mx-auto mb-4 bg-primary/10 text-primary flex items-center justify-center rounded-full text-2xl font-bold">
+          1
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-text-primary">Accessibility</h3>
+        <p class="text-text-secondary text-sm">We believe education should be open and available to everyone.</p>
+      </div>
+
+      <div class="p-6 border border-border rounded-2xl shadow-sm hover:shadow-md transition">
+        <div class="w-12 h-12 mx-auto mb-4 bg-primary/10 text-primary flex items-center justify-center rounded-full text-2xl font-bold">
+          2
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-text-primary">Innovation</h3>
+        <p class="text-text-secondary text-sm">We continuously evolve to make learning more effective and fun.</p>
+      </div>
+
+      <div class="p-6 border border-border rounded-2xl shadow-sm hover:shadow-md transition">
+        <div class="w-12 h-12 mx-auto mb-4 bg-primary/10 text-primary flex items-center justify-center rounded-full text-2xl font-bold">
+          3
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-text-primary">Community</h3>
+        <p class="text-text-secondary text-sm">We grow together — through support, sharing, and collaboration.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="mt-24 text-center">
+    <h2 class="text-3xl font-bold text-text-primary mb-4">
+      Ready to start your learning journey?
+    </h2>
+    <p class="text-text-secondary mb-8">
+      Join thousands of students and instructors who are transforming their future with <strong>e-ducate</strong>.
+    </p>
+    <a href="{% url 'course_list' %}" 
+       class="inline-block bg-primary hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-lg transition duration-200">
+      Explore Courses
+    </a>
+  </div>
+</section>
+{% endblock %}

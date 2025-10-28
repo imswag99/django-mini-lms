@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Delete Course{% endblock %}
+{% block content %}
+<section class="py-16 text-center">
+  <h1 class="text-3xl font-bold text-text-primary mb-6">
+    Are you sure you want to delete "{{ course.title }}"?
+  </h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit"
+      class="bg-error text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 transition">
+      Yes, Delete
+    </button>
+    <a href="{% url 'course_list' %}"
+      class="ml-4 border border-border text-text-primary px-6 py-3 rounded-lg hover:bg-surface transition">
+      Cancel
+    </a>
+  </form>
+</section>
+{% endblock %}
