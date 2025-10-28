@@ -1,6 +1,6 @@
 # 🎓 e-ducate — Mini LMS
 
-**e-ducate** is a simple, modern Learning Management System (LMS) built with **Django** and **Tailwind CSS**.  
+**e-ducate** is a simple, modern DEMO Learning Management System (LMS) built with **Django** and **Tailwind CSS**.  
 It allows instructors to create and manage courses, while students can enroll, learn through video lessons, and submit reviews.
 
 ---
